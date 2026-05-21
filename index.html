@@ -2306,6 +2306,7 @@
             // ==========================================================================
             function submitForm() {
                 const action = form.getAttribute('action');
+                console.log("Submitting form data to:", action);
                 
                 // If endpoint is set, submit using Formspree
                 if (action && action !== 'YOUR_FORMSPREE_ENDPOINT_HERE') {
@@ -2324,12 +2325,14 @@
                         }
                     })
                     .then(response => {
+                        console.log("Response status:", response.status);
                         if (response.ok) {
                             handleSuccessSubmit();
                         } else {
                             return response.json().then(data => {
+                                console.error("Formspree error response:", data);
                                 if (Object.hasOwn(data, 'errors')) {
-                                    alert(data["errors"].map(error => error["message"]).join(", "));
+                                    alert("Formspree Error: " + data["errors"].map(error => error["message"]).join(", "));
                                 } else {
                                     alert("Submission failed. Please check the Formspree endpoint config.");
                                 }
@@ -2338,11 +2341,13 @@
                         }
                     })
                     .catch(error => {
+                        console.error("Fetch network error:", error);
                         alert("Network connection error. Please try again.");
                         resetSubmitLoading();
                     });
                 } else {
                     // Fallback visual simulation for mock environments
+                    alert("تنبيه: أنت تقوم بتشغيل النسخة التجريبية (Demo Mode). لم يتم تهيئة رابط Formspree في هذه النسخة بعد. يرجى مسح الكاش (Ctrl + F5) لتشغيل النسخة الجديدة.");
                     nextBtn.classList.add('loading');
                     nextBtn.disabled = true;
                     prevBtn.disabled = true;
