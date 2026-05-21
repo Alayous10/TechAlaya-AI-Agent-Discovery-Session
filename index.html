@@ -1110,82 +1110,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group span-full">
-                            <label>Integration Environment <span class="field-subtitle">Select where the AI Agent will live (Select all that apply)</span></label>
-                            <div class="checkbox-grid">
-                                <label class="checkbox-card" id="card_env_widget">
-                                    <input type="checkbox" name="integration_environment[]" value="Website Widget" id="env_widget">
-                                    <span class="checkbox-label">Website Widget</span>
-                                </label>
-                                <label class="checkbox-card" id="card_env_whatsapp">
-                                    <input type="checkbox" name="integration_environment[]" value="WhatsApp" id="env_whatsapp">
-                                    <span class="checkbox-label">WhatsApp</span>
-                                </label>
-                                <label class="checkbox-card" id="card_env_telegram">
-                                    <input type="checkbox" name="integration_environment[]" value="Telegram" id="env_telegram">
-                                    <span class="checkbox-label">Telegram</span>
-                                </label>
-                                <label class="checkbox-card" id="card_env_discord">
-                                    <input type="checkbox" name="integration_environment[]" value="Discord" id="env_discord">
-                                    <span class="checkbox-label">Discord</span>
-                                </label>
-                                <label class="checkbox-card" id="card_env_crm">
-                                    <input type="checkbox" name="integration_environment[]" value="Internal CRM" id="env_crm">
-                                    <span class="checkbox-label">Internal CRM</span>
-                                </label>
-                                <label class="checkbox-card" id="card_env_other">
-                                    <input type="checkbox" name="integration_environment[]" value="Other" id="env_other">
-                                    <span class="checkbox-label">Other</span>
-                                </label>
-                            </div>
-                            <div class="conditional-detail" id="env_other_details_container">
-                                <input type="text" name="integration_environment_other_details" id="env_other_details" placeholder="Specify other integration channels here...">
-                            </div>
-                        </div>
-
-                        <div class="form-group span-full">
-                            <label for="data_sources">
-                                Data & Knowledge Base
-                                <span class="field-subtitle">What database, documents, APIs, or materials will train the agent?</span>
-                            </label>
-                            <textarea id="data_sources" name="data_sources" placeholder="e.g. FDA compliance documents, ingredients research reports, website URLs (nutrivibe.com), and competitors' active ad lists."></textarea>
-                        </div>
-
-                        <div class="form-group span-full">
-                            <label>Core Capabilities <span class="field-subtitle">Select capabilities required for the system</span></label>
-                            <div class="checkbox-grid">
-                                <label class="checkbox-card" id="card_cap_text">
-                                    <input type="checkbox" name="core_capabilities[]" value="Text Generation" id="cap_text">
-                                    <span class="checkbox-label">Text Generation</span>
-                                </label>
-                                <label class="checkbox-card" id="card_cap_lead">
-                                    <input type="checkbox" name="core_capabilities[]" value="Lead Generation" id="cap_lead">
-                                    <span class="checkbox-label">Lead Generation</span>
-                                </label>
-                                <label class="checkbox-card" id="card_cap_support">
-                                    <input type="checkbox" name="core_capabilities[]" value="Customer Support" id="cap_support">
-                                    <span class="checkbox-label">Customer Support</span>
-                                </label>
-                                <label class="checkbox-card" id="card_cap_image">
-                                    <input type="checkbox" name="core_capabilities[]" value="Image Generation" id="cap_image">
-                                    <span class="checkbox-label">Image Generation</span>
-                                </label>
-                                <label class="checkbox-card" id="card_cap_actions">
-                                    <input type="checkbox" name="core_capabilities[]" value="Automation/Actions" id="cap_actions">
-                                    <span class="checkbox-label">Automation/Actions</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group span-full">
-                            <label for="llm_preference">Large Language Model (LLM) Preference</label>
-                            <select id="llm_preference" name="llm_preference">
-                                <option value="No preference - Recommend for me" selected>No preference - Recommend for me</option>
-                                <option value="Gemini 3.5">Google Gemini 3.5</option>
-                                <option value="Claude 4.6">Anthropic Claude 4.6</option>
-                                <option value="GPT-4o">OpenAI GPT-4o</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
 
@@ -1761,14 +1685,6 @@
                                         <span class="review-label">Primary Agent Goal</span>
                                         <span class="review-value" data-source="agent_goal"></span>
                                     </div>
-                                    <div class="review-item">
-                                        <span class="review-label">Environments</span>
-                                        <span class="review-value" data-source="integration_environment[]"></span>
-                                    </div>
-                                    <div class="review-item">
-                                        <span class="review-label">Model Preference</span>
-                                        <span class="review-value" data-source="llm_preference"></span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1969,9 +1885,6 @@
             const successOverlay = document.getElementById('successOverlay');
             
             // Checkbox and details toggles
-            const envOther = document.getElementById('env_other');
-            const envOtherCard = document.getElementById('card_env_other');
-            const envOtherDetailsContainer = document.getElementById('env_other_details_container');
             const pltOther = document.getElementById('plt_other');
             const pltOtherCard = document.getElementById('card_plt_other');
             const pltOtherDetailsContainer = document.getElementById('plt_other_details_container');
@@ -2198,7 +2111,6 @@
                 });
                 
                 // Extra checkboxes check (since FormData sometimes drops empty arrays)
-                obj['integration_environment[]'] = getCheckedValues('integration_environment[]');
                 obj['platforms[]'] = getCheckedValues('platforms[]');
                 obj['formats[]'] = getCheckedValues('formats[]');
 
@@ -2246,7 +2158,6 @@
                     });
 
                     // Trigger other details field layouts if checked
-                    toggleConditionalField(envOther, envOtherDetailsContainer);
                     toggleConditionalField(pltOther, pltOtherDetailsContainer);
                     toggleConditionalField(fmtOther, fmtOtherDetailsContainer);
 
@@ -2262,7 +2173,6 @@
                 form.reset();
                 // Clear selected checkbox classes
                 document.querySelectorAll('.checkbox-card').forEach(card => card.classList.remove('selected'));
-                toggleConditionalField(envOther, envOtherDetailsContainer);
                 toggleConditionalField(pltOther, pltOtherDetailsContainer);
                 toggleConditionalField(fmtOther, fmtOtherDetailsContainer);
                 triggerCharCounter();
@@ -2296,7 +2206,6 @@
                         }
 
                         // Specific conditionals
-                        if (input === envOther) toggleConditionalField(envOther, envOtherDetailsContainer);
                         if (input === pltOther) toggleConditionalField(pltOther, pltOtherDetailsContainer);
                         if (input === fmtOther) toggleConditionalField(fmtOther, fmtOtherDetailsContainer);
                     });
