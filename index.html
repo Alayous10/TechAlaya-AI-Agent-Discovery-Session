@@ -1,0 +1,2466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechAlaya AI Agent Discovery Session - Client Onboarding & Requirement Gathering Form. Custom AI Agent scoping for nutritional supplements and advertising automation.">
+    <meta name="author" content="TechAlaya">
+    <title>AI Agent Discovery Session | TechAlaya</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. DESIGN SYSTEM & CSS VARIABLES
+           ========================================================================== */
+        :root {
+            --bg-color: #08090d;
+            --bg-grid: #0d0f17;
+            --surface-color: rgba(17, 22, 34, 0.65);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --accent-primary: #06b6d4;      /* Cyber Cyan */
+            --accent-secondary: #7c3aed;    /* Neon Purple */
+            --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%);
+            --accent-glow: rgba(6, 182, 212, 0.25);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --success: #10b981;
+            --danger: #f43f5e;
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius-lg: 16px;
+            --border-radius-md: 10px;
+        }
+
+        /* ==========================================================================
+           2. GLOBAL STYLES & BACKGROUND
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 40%),
+                linear-gradient(var(--bg-grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        /* Subtle glowing visual elements */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: var(--accent-gradient);
+            filter: blur(8px);
+            z-index: 10;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        /* ==========================================================================
+           3. TYPOGRAPHY & LAYOUT UTILITIES
+           ========================================================================== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        a:hover {
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================================================
+           4. BRAND HEADER
+           ========================================================================== */
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--surface-border);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            fill: url(#logoGradient);
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1.main-title {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* ==========================================================================
+           5. WIZARD CONTAINER & PERSISTENCE NOTICE
+           ========================================================================== */
+        .wizard-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 968px) {
+            .wizard-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Persistence notification banner */
+        .toast-banner {
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: var(--border-radius-md);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            display: none; /* Controlled by JS */
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .toast-content svg {
+            color: var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .toast-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .toast-btn {
+            background: transparent;
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .toast-btn:hover {
+            background: var(--accent-primary);
+            color: var(--bg-color);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+        }
+
+        .toast-btn.reset-btn {
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
+
+        .toast-btn.reset-btn:hover {
+            background: var(--text-secondary);
+            color: var(--bg-color);
+            box-shadow: none;
+        }
+
+        /* ==========================================================================
+           6. SIDEBAR STEP PROGRESS TRACKER
+           ========================================================================== */
+        .sidebar-tracker {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 16.66%; /* 1st step out of 6 */
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            background: transparent;
+            text-align: left;
+            width: 100%;
+        }
+
+        .step-item:hover:not(.disabled) {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.04);
+        }
+
+        .step-item.active {
+            background: rgba(6, 182, 212, 0.06);
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .step-item.active .step-number {
+            background: var(--accent-primary);
+            color: var(--bg-color);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .step-item.completed .step-number {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .step-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: var(--transition-smooth);
+        }
+
+        .step-item.active .step-label {
+            color: var(--text-primary);
+        }
+
+        .step-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .step-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ==========================================================================
+           7. WIZARD CARD & WIDGETS
+           ========================================================================== */
+        .wizard-card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 550px;
+        }
+
+        @media (max-width: 576px) {
+            .wizard-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .step-panel {
+            display: none; /* Show/hide toggled by JS */
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .step-panel.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 1rem;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .info-quote {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--accent-primary);
+            padding: 0.75rem 1.25rem;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+        }
+
+        /* ==========================================================================
+           8. FORM FIELD COMPONENT STYLING
+           ========================================================================== */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .span-full {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid > * {
+                grid-column: span 2 !important;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .required-indicator {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-left: 0.25rem;
+        }
+
+        .field-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Inputs, Textareas, Selects styling */
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--border-radius-md);
+            padding: 0.85rem 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="url"]:hover,
+        select:hover,
+        textarea:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="url"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Checkbox groups */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--border-radius-md);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition-smooth);
+        }
+
+        .checkbox-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .checkbox-card input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--text-muted);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .checkbox-card input[type="checkbox"]:checked {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .checkbox-card input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 4px;
+            height: 8px;
+            border: solid var(--bg-color);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-card.selected {
+            background: rgba(6, 182, 212, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .checkbox-card.selected .checkbox-label {
+            color: var(--text-primary);
+        }
+
+        /* Help texts */
+        .help-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.2rem;
+        }
+        
+        .char-counter {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Other details hidden fields */
+        .conditional-detail {
+            display: none;
+            margin-top: 0.75rem;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* ==========================================================================
+           9. NAVIGATION BUTTONS
+           ========================================================================== */
+        .wizard-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            user-select: none;
+            outline: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--surface-border);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+
+        .btn-primary:hover::after {
+            left: 125%;
+        }
+
+        /* Glowing Submit button variant */
+        .btn-submit {
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5);
+        }
+
+        /* Loading spinner */
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        .loading .spinner {
+            display: inline-block;
+        }
+
+        .loading .btn-text {
+            display: none;
+        }
+
+        /* ==========================================================================
+           10. REVIEW SUMMARY ACCORDION
+           ========================================================================== */
+        .review-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .review-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .review-section.active {
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+
+        .review-trigger {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            outline: none;
+        }
+
+        .review-trigger svg {
+            transition: var(--transition-smooth);
+            color: var(--text-muted);
+        }
+
+        .review-section.expanded .review-trigger svg {
+            transform: rotate(180deg);
+            color: var(--accent-primary);
+        }
+
+        .review-content {
+            padding: 0 1.25rem 1.25rem;
+            display: none; /* Controlled by class */
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .review-section.expanded .review-content {
+            display: block;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding-top: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .review-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .review-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .review-value {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+
+        .review-value.empty-field {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* ==========================================================================
+           11. SUCCESS SCREEN OVERLAY
+           ========================================================================== */
+        .success-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: 100;
+            display: none; /* Controlled by JS */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .success-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--success);
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            animation: scaleUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .success-overlay h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .success-overlay p {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        /* ==========================================================================
+           12. FOOTER & ANIMATIONS
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            margin-top: auto;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        /* Keyframes */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Form validation visual clues */
+        .invalid-input {
+            border-color: var(--danger) !important;
+            box-shadow: 0 0 5px rgba(244, 63, 94, 0.2) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SVG Gradients Definitions -->
+    <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
+        <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#06b6d4" />
+                <stop offset="100%" stop-color="#7c3aed" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div class="container">
+        
+        <!-- ==========================================================================
+           HEADER SECTION
+           ========================================================================== -->
+        <header>
+            <div class="logo-container">
+                <span class="logo-text">TechAlaya</span>
+            </div>
+            <h1 class="main-title">AI Agent Discovery Session</h1>
+            <div class="subtitle">Nutritional Supplement — Global Advertising Agent</div>
+            <div class="tagline">Interactive Client Requirement Questionnaire</div>
+        </header>
+
+        <!-- Draft recovery toaster -->
+        <div id="toastBanner" class="toast-banner">
+            <div class="toast-content">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <span>We found a previously saved draft for this session. Do you want to load it?</span>
+            </div>
+            <div class="toast-actions">
+                <button type="button" class="toast-btn" id="loadDraftBtn">Load Draft</button>
+                <button type="button" class="toast-btn reset-btn" id="discardDraftBtn">Start Fresh</button>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+           MAIN CONTENT - GRID WIZARD LAYOUT
+           ========================================================================== -->
+        <div class="wizard-layout">
+            
+            <!-- Left Sidebar Tracker -->
+            <aside class="sidebar-tracker">
+                <div class="progress-header">
+                    <div class="progress-title">
+                        <span>Overall Progress</span>
+                        <span id="progressText">16%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="progressBar" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="step-list">
+                        <li class="step-item active" data-step="1" id="stepIndicator1">
+                            <span class="step-number">1</span>
+                            <div class="step-info">
+                                <span class="step-label">Core Setup</span>
+                                <span class="step-desc">Company & Goals</span>
+                            </div>
+                        </li>
+                        <li class="step-item disabled" data-step="2" id="stepIndicator2">
+                            <span class="step-number">2</span>
+                            <div class="step-info">
+                                <span class="step-label">Product & Market</span>
+                                <span class="step-desc">Target Audience</span>
+                            </div>
+                        </li>
+                        <li class="step-item disabled" data-step="3" id="stepIndicator3">
+                            <span class="step-number">3</span>
+                            <div class="step-info">
+                                <span class="step-label">Platforms & Content</span>
+                                <span class="step-desc">Ad Channels & Assets</span>
+                            </div>
+                        </li>
+                        <li class="step-item disabled" data-step="4" id="stepIndicator4">
+                            <span class="step-number">4</span>
+                            <div class="step-info">
+                                <span class="step-label">Voice & Workflow</span>
+                                <span class="step-desc">Brand & Approvals</span>
+                            </div>
+                        </li>
+                        <li class="step-item disabled" data-step="5" id="stepIndicator5">
+                            <span class="step-number">5</span>
+                            <div class="step-info">
+                                <span class="step-label">Legal & Budget</span>
+                                <span class="step-desc">Compliance & Tech</span>
+                            </div>
+                        </li>
+                        <li class="step-item disabled" data-step="6" id="stepIndicator6">
+                            <span class="step-number">6</span>
+                            <div class="step-info">
+                                <span class="step-label">Finalize</span>
+                                <span class="step-desc">Session notes & Submit</span>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Right Main Form Card -->
+            <!-- 
+                ========================================================================
+                CRITICAL TECHNICAL INTEGRATION: FORMSPREE ENDPOINT
+                ========================================================================
+                To connect this form to your email:
+                1. Go to Formspree (https://formspree.io)
+                2. Create a form project and copy the Form API Endpoint URL.
+                3. Paste the URL into the 'action' attribute below.
+            -->
+            <form id="discoveryForm" method="POST" action="YOUR_FORMSPREE_ENDPOINT_HERE" class="wizard-card">
+                
+                <!-- Success State Overlay -->
+                <div class="success-overlay" id="successOverlay">
+                    <div class="success-circle">
+                        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <h2>Discovery Data Submitted Successfully!</h2>
+                    <p>Thank you for completing the requirements gathering. Our AI Engineering team at TechAlaya will review your scope parameters and generate the Architecture & Project Plan. We will contact you within 24-48 hours.</p>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.reload();">Fill Another Response</button>
+                </div>
+
+                <!-- ==========================================================================
+                   STEP 1: CLIENT INFO & AI CORE CONFIG
+                   ========================================================================== -->
+                <div class="step-panel active" data-step="1">
+                    <div class="section-header">
+                        <span class="section-tag">Step 1 of 6</span>
+                        <h2 class="section-title">Client Information & Core AI Agent Goal</h2>
+                        <p class="section-description">Provide your primary business details and specify the high-level capabilities of the AI Agent.</p>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="client_name">Full Name <span class="required-indicator">*</span></label>
+                            <input type="text" id="client_name" name="client_name" placeholder="e.g. John Doe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="client_company">Company Name <span class="required-indicator">*</span></label>
+                            <input type="text" id="client_company" name="client_company" placeholder="e.g. NutriVibe Ltd" required>
+                        </div>
+                        
+                        <div class="form-group span-full">
+                            <label for="client_email">Email Address <span class="required-indicator">*</span></label>
+                            <input type="email" id="client_email" name="client_email" placeholder="e.g. contact@nutrivibe.com" required>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="agent_goal">
+                                What is the primary goal of this AI Agent? <span class="required-indicator">*</span>
+                                <span class="field-subtitle">Clearly describe the core purpose and business outcome</span>
+                            </label>
+                            <textarea id="agent_goal" name="agent_goal" placeholder="e.g., Automate localized multi-channel advertising for our new organic collagen powder. The agent needs to write compelling Facebook/TikTok copy, translate and transcreate it into Arabic/French, and handle image asset generation tailored for fitness audiences." required></textarea>
+                            <div class="counter-container">
+                                <span class="char-counter" id="goal_counter">0 characters</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label>Integration Environment <span class="field-subtitle">Select where the AI Agent will live (Select all that apply)</span></label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-card" id="card_env_widget">
+                                    <input type="checkbox" name="integration_environment[]" value="Website Widget" id="env_widget">
+                                    <span class="checkbox-label">Website Widget</span>
+                                </label>
+                                <label class="checkbox-card" id="card_env_whatsapp">
+                                    <input type="checkbox" name="integration_environment[]" value="WhatsApp" id="env_whatsapp">
+                                    <span class="checkbox-label">WhatsApp</span>
+                                </label>
+                                <label class="checkbox-card" id="card_env_telegram">
+                                    <input type="checkbox" name="integration_environment[]" value="Telegram" id="env_telegram">
+                                    <span class="checkbox-label">Telegram</span>
+                                </label>
+                                <label class="checkbox-card" id="card_env_discord">
+                                    <input type="checkbox" name="integration_environment[]" value="Discord" id="env_discord">
+                                    <span class="checkbox-label">Discord</span>
+                                </label>
+                                <label class="checkbox-card" id="card_env_crm">
+                                    <input type="checkbox" name="integration_environment[]" value="Internal CRM" id="env_crm">
+                                    <span class="checkbox-label">Internal CRM</span>
+                                </label>
+                                <label class="checkbox-card" id="card_env_other">
+                                    <input type="checkbox" name="integration_environment[]" value="Other" id="env_other">
+                                    <span class="checkbox-label">Other</span>
+                                </label>
+                            </div>
+                            <div class="conditional-detail" id="env_other_details_container">
+                                <input type="text" name="integration_environment_other_details" id="env_other_details" placeholder="Specify other integration channels here...">
+                            </div>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="data_sources">
+                                Data & Knowledge Base
+                                <span class="field-subtitle">What database, documents, APIs, or materials will train the agent?</span>
+                            </label>
+                            <textarea id="data_sources" name="data_sources" placeholder="e.g. FDA compliance documents, ingredients research reports, website URLs (nutrivibe.com), and competitors' active ad lists."></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label>Core Capabilities <span class="field-subtitle">Select capabilities required for the system</span></label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-card" id="card_cap_text">
+                                    <input type="checkbox" name="core_capabilities[]" value="Text Generation" id="cap_text">
+                                    <span class="checkbox-label">Text Generation</span>
+                                </label>
+                                <label class="checkbox-card" id="card_cap_lead">
+                                    <input type="checkbox" name="core_capabilities[]" value="Lead Generation" id="cap_lead">
+                                    <span class="checkbox-label">Lead Generation</span>
+                                </label>
+                                <label class="checkbox-card" id="card_cap_support">
+                                    <input type="checkbox" name="core_capabilities[]" value="Customer Support" id="cap_support">
+                                    <span class="checkbox-label">Customer Support</span>
+                                </label>
+                                <label class="checkbox-card" id="card_cap_image">
+                                    <input type="checkbox" name="core_capabilities[]" value="Image Generation" id="cap_image">
+                                    <span class="checkbox-label">Image Generation</span>
+                                </label>
+                                <label class="checkbox-card" id="card_cap_actions">
+                                    <input type="checkbox" name="core_capabilities[]" value="Automation/Actions" id="cap_actions">
+                                    <span class="checkbox-label">Automation/Actions</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="llm_preference">Large Language Model (LLM) Preference</label>
+                            <select id="llm_preference" name="llm_preference">
+                                <option value="No preference - Recommend for me" selected>No preference - Recommend for me</option>
+                                <option value="Gemini 3.5">Google Gemini 3.5</option>
+                                <option value="Claude 4.6">Anthropic Claude 4.6</option>
+                                <option value="GPT-4o">OpenAI GPT-4o</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                   STEP 2: PRODUCT INFORMATION & TARGET AUDIENCE (SECTIONS 1 & 2)
+                   ========================================================================== -->
+                <div class="step-panel" data-step="2">
+                    <div class="section-header">
+                        <span class="section-tag">Step 2 of 6</span>
+                        <h2 class="section-title">Product Details & Target Audience</h2>
+                        <p class="section-description">Formulate deep product benefits and map the ideal customer demographics and psychographics.</p>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display);">1. Product Information</h3>
+                    <div class="info-quote">"Understanding the product deeply is the foundation of every great ad."</div>
+                    
+                    <div class="form-grid" style="margin-bottom: 2rem;">
+                        <div class="form-group">
+                            <label for="product_name">1.1 What is the exact name of the product? <span class="required-indicator">*</span></label>
+                            <input type="text" id="product_name" name="product_name" placeholder="e.g. UltraFit Pure Marine Collagen" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product_category">1.2 Product Category <span class="required-indicator">*</span></label>
+                            <input type="text" id="product_category" name="product_category" placeholder="e.g. Collagen / Vitamins / Pre-workout" required>
+                        </div>
+                        
+                        <div class="form-group span-full">
+                            <label for="product_benefits">1.3 What are the top 3 main benefits of the product? <span class="required-indicator">*</span></label>
+                            <textarea id="product_benefits" name="product_benefits" placeholder="e.g.&#10;1. Deep wrinkles reduction and skin hydration.&#10;2. Hair follicles strengthening and joint lubrication.&#10;3. Fast biological absorption with 0g artificial sugar." required></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="product_ingredients">1.4 Key active ingredients & unique proprietary formulas <span class="required-indicator">*</span></label>
+                            <textarea id="product_ingredients" name="product_ingredients" placeholder="e.g. Hydrolyzed ocean cod peptide, pure hyaluronic acid, organic bioflavonoid Vitamin C." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product_certifications">1.5 Product Certifications</label>
+                            <input type="text" id="product_certifications" name="product_certifications" placeholder="e.g. SFDA, Halal, Organic, Non-GMO, GMP">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product_price">1.6 Price Range / MSRP <span class="required-indicator">*</span></label>
+                            <input type="text" id="product_price" name="product_price" placeholder="e.g. $59.00 / 220 SAR per container" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product_purchase_channels">1.7 How can customers buy it? <span class="required-indicator">*</span></label>
+                            <input type="text" id="product_purchase_channels" name="product_purchase_channels" placeholder="e.g. Official Shopify website, selected pharmacies in Riyadh" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product_variants">1.8 Multiple Variants Available</label>
+                            <input type="text" id="product_variants" name="product_variants" placeholder="e.g. Wild Berry, Mango Passion, Unflavored; 30-serving tubs">
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="product_competitor_diff">1.9 What makes this product different from competitors? <span class="required-indicator">*</span></label>
+                            <textarea id="product_competitor_diff" name="product_competitor_diff" placeholder="e.g. Sourced strictly from wild-caught, sustainably-fished Icelandic cod, processed in Zero-Emission plants. No fishy aftertaste." required></textarea>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">2. Target Audience</h3>
+                    <div class="info-quote">"The more specific the audience, the more powerful the ad."</div>
+
+                    <div class="form-grid">
+                        <div class="form-group span-full">
+                            <label for="audience_ideal">2.1 Ideal Customer Profile (ICP) <span class="required-indicator">*</span></label>
+                            <textarea id="audience_ideal" name="audience_ideal" placeholder="e.g. Skincare-focused, wellness-oriented professionals aged 28-45. They value premium organic ingredients and prioritize scientific efficacy over supermarket brands." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="audience_age">2.2 Target Age Range <span class="required-indicator">*</span></label>
+                            <input type="text" id="audience_age" name="audience_age" placeholder="e.g. 25 - 48" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="audience_gender">2.3 Gender Focus <span class="required-indicator">*</span></label>
+                            <select id="audience_gender" name="audience_gender" required>
+                                <option value="" disabled selected>Select gender focus</option>
+                                <option value="All">All / Unisex</option>
+                                <option value="Female">Female Focus</option>
+                                <option value="Male">Male Focus</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="audience_regions">2.4 Target Countries / Regions <span class="required-indicator">*</span></label>
+                            <input type="text" id="audience_regions" name="audience_regions" placeholder="e.g. Saudi Arabia, UAE, Qatar" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="audience_interests">2.5 Interests & Lifestyle <span class="required-indicator">*</span></label>
+                            <input type="text" id="audience_interests" name="audience_interests" placeholder="e.g. Yoga, pilates, luxury cosmetics, anti-aging, clean eating" required>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="audience_problem">2.6 What problem does this product solve for the customer? <span class="required-indicator">*</span></label>
+                            <textarea id="audience_problem" name="audience_problem" placeholder="e.g. Loss of skin elasticity, joint stiffness after runs, premature fine lines caused by fast-paced urban lifestyles." required></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="audience_emotions">2.7 Customer emotions before and after using the product <span class="required-indicator">*</span></label>
+                            <textarea id="audience_emotions" name="audience_emotions" placeholder="e.g. Before: Self-conscious about fine lines and joint discomfort. After: Rejuvenated, confident, active and radiant." required></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="audience_avoid">2.8 Audience segments to avoid</label>
+                            <input type="text" id="audience_avoid" name="audience_avoid" placeholder="e.g. Teenagers looking for quick bodybuilding supplements, budget-only buyers">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                   STEP 3: PLATFORMS, FORMATS & LANGUAGE SPEC (SECTIONS 3 & 4)
+                   ========================================================================== -->
+                <div class="step-panel" data-step="3">
+                    <div class="section-header">
+                        <span class="section-tag">Step 3 of 6</span>
+                        <h2 class="section-title">Platforms, Content Formats & Translation</h2>
+                        <p class="section-description">Specify the target marketing media and define the multi-lingual execution boundaries.</p>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display);">3. Platforms & Content Format</h3>
+                    <div class="info-quote">"Different platforms require very different ad styles."</div>
+
+                    <div class="form-grid" style="margin-bottom: 2rem;">
+                        <div class="form-group span-full">
+                            <label>3.1 Target Advertising Platforms <span class="required-indicator">*</span></label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-card" id="card_plt_instagram">
+                                    <input type="checkbox" name="platforms[]" value="Instagram" class="platforms-checkbox">
+                                    <span class="checkbox-label">Instagram</span>
+                                </label>
+                                <label class="checkbox-card" id="card_plt_tiktok">
+                                    <input type="checkbox" name="platforms[]" value="TikTok" class="platforms-checkbox">
+                                    <span class="checkbox-label">TikTok</span>
+                                </label>
+                                <label class="checkbox-card" id="card_plt_facebook">
+                                    <input type="checkbox" name="platforms[]" value="Facebook" class="platforms-checkbox">
+                                    <span class="checkbox-label">Facebook</span>
+                                </label>
+                                <label class="checkbox-card" id="card_plt_youtube">
+                                    <input type="checkbox" name="platforms[]" value="YouTube" class="platforms-checkbox">
+                                    <span class="checkbox-label">YouTube</span>
+                                </label>
+                                <label class="checkbox-card" id="card_plt_google">
+                                    <input type="checkbox" name="platforms[]" value="Google Ads" class="platforms-checkbox">
+                                    <span class="checkbox-label">Google Ads</span>
+                                </label>
+                                <label class="checkbox-card" id="card_plt_x">
+                                    <input type="checkbox" name="platforms[]" value="X (Twitter)" class="platforms-checkbox">
+                                    <span class="checkbox-label">X / Twitter</span>
+                                </label>
+                                <label class="checkbox-card" id="card_plt_snapchat">
+                                    <input type="checkbox" name="platforms[]" value="Snapchat" class="platforms-checkbox">
+                                    <span class="checkbox-label">Snapchat</span>
+                                </label>
+                                <label class="checkbox-card" id="card_plt_other">
+                                    <input type="checkbox" name="platforms[]" value="Other" class="platforms-checkbox" id="plt_other">
+                                    <span class="checkbox-label">Other</span>
+                                </label>
+                            </div>
+                            <div class="conditional-detail" id="plt_other_details_container">
+                                <input type="text" name="platforms_other_details" id="plt_other_details" placeholder="Specify other networks...">
+                            </div>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label>3.2 Content Formats Needed <span class="required-indicator">*</span></label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-card" id="card_fmt_static">
+                                    <input type="checkbox" name="formats[]" value="Static Image" class="formats-checkbox">
+                                    <span class="checkbox-label">Static Image</span>
+                                </label>
+                                <label class="checkbox-card" id="card_fmt_carousel">
+                                    <input type="checkbox" name="formats[]" value="Carousel" class="formats-checkbox">
+                                    <span class="checkbox-label">Carousel Layout</span>
+                                </label>
+                                <label class="checkbox-card" id="card_fmt_reel">
+                                    <input type="checkbox" name="formats[]" value="Reel / Short Video" class="formats-checkbox">
+                                    <span class="checkbox-label">Reel / Short Video</span>
+                                </label>
+                                <label class="checkbox-card" id="card_fmt_story">
+                                    <input type="checkbox" name="formats[]" value="Story" class="formats-checkbox">
+                                    <span class="checkbox-label">Story format</span>
+                                </label>
+                                <label class="checkbox-card" id="card_fmt_text">
+                                    <input type="checkbox" name="formats[]" value="Text-only Copy" class="formats-checkbox">
+                                    <span class="checkbox-label">Text-only Copy</span>
+                                </label>
+                                <label class="checkbox-card" id="card_fmt_other">
+                                    <input type="checkbox" name="formats[]" value="Other" class="formats-checkbox" id="fmt_other">
+                                    <span class="checkbox-label">Other</span>
+                                </label>
+                            </div>
+                            <div class="conditional-detail" id="fmt_other_details_container">
+                                <input type="text" name="formats_other_details" id="fmt_other_details" placeholder="Specify other formats...">
+                            </div>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="brand_assets">3.3 Existing Brand Assets <span class="field-subtitle">Logos, color codes, custom brand fonts, asset folders</span></label>
+                            <textarea id="brand_assets" name="brand_assets" placeholder="e.g. Logo vector file (Drive link), Hex codes: #000000 and #00FFCC, font family is 'Outfit'."></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="inspiration_ads">3.4 Competitor Ads or Creative Inspirations you love</label>
+                            <textarea id="inspiration_ads" name="inspiration_ads" placeholder="e.g. We love the minimalist layout of Athletic Greens (AG1) Instagram posts, and the punchy UGC testimonial video ads of Seed Probiotics."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ad_frequency">3.5 Required Ad Frequency <span class="required-indicator">*</span></label>
+                            <input type="text" id="ad_frequency" name="ad_frequency" placeholder="e.g. 4 creatives/week" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="generate_images">3.6 AI Image Generation Requirement <span class="required-indicator">*</span></label>
+                            <select id="generate_images" name="generate_images" required>
+                                <option value="" disabled selected>Select generation preference</option>
+                                <option value="Full image generation (AI creates visuals & background)">Full image generation (AI creates visuals & background)</option>
+                                <option value="Text copy only (we provide product photos)">Text copy only (we provide product photos)</option>
+                                <option value="Hybrid (AI overlays text/borders on our photos)">Hybrid (AI overlays text/borders on our photos)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="resolutions">3.7 Specific Sizes & Resolutions Needed</label>
+                            <input type="text" id="resolutions" name="resolutions" placeholder="e.g. 1080x1080 (Insta Square) & 1080x1920 (TikTok vertical)">
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">4. Languages & Markets</h3>
+                    <div class="info-quote">"Global ads need local thinking."</div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="languages">4.1 Required Languages <span class="required-indicator">*</span></label>
+                            <input type="text" id="languages" name="languages" placeholder="e.g. Arabic (Saudi dialect) & English" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="localization_style">4.2 Translation & Localization Method <span class="required-indicator">*</span></label>
+                            <select id="localization_style" name="localization_style" required>
+                                <option value="" disabled selected>Select localization style</option>
+                                <option value="Direct Translation (Literal meaning)">Direct Translation (Literal meaning)</option>
+                                <option value="Transcreation (Creative adaptation per market)">Transcreation (Creative adaptation per market)</option>
+                                <option value="Slang & Dialect focused text copy">Slang & Dialect focused text copy</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="cultural_sensitivities">4.3 Cultural Sensitivities / Local Taboos</label>
+                            <textarea id="cultural_sensitivities" name="cultural_sensitivities" placeholder="e.g. Visual ads must conform to modest guidelines in GCC markets. No medical claim associations without certification support."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="primary_market">4.4 Primary Focus Market / Country <span class="required-indicator">*</span></label>
+                            <input type="text" id="primary_market" name="primary_market" placeholder="e.g. Saudi Arabia (Riyadh)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="market_regulations">4.5 Country-Specific Regulations</label>
+                            <input type="text" id="market_regulations" name="market_regulations" placeholder="e.g. SFDA licensing required, no health guarantees">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                   STEP 4: BRAND VOICE, TONE & WORKFLOW APPROVALS (SECTIONS 5 & 6)
+                   ========================================================================== -->
+                <div class="step-panel" data-step="4">
+                    <div class="section-header">
+                        <span class="section-tag">Step 4 of 6</span>
+                        <h2 class="section-title">Brand Tone, Identity & Approval Workflows</h2>
+                        <p class="section-description">Define the stylistic rules for copy generation and structure the editorial approval process.</p>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display);">5. Tone, Brand & Style</h3>
+                    <div class="info-quote">"The 'voice' of your brand is what makes people remember you."</div>
+
+                    <div class="form-grid" style="margin-bottom: 2rem;">
+                        <div class="form-group">
+                            <label for="brand_tone">5.1 Brand's Tone of Voice <span class="required-indicator">*</span></label>
+                            <select id="brand_tone" name="brand_tone" required>
+                                <option value="" disabled selected>Select primary tone</option>
+                                <option value="Scientific & Trustworthy">Scientific & Trustworthy</option>
+                                <option value="Energetic & Bold">Energetic & Bold</option>
+                                <option value="Soft & Motivational">Soft & Motivational</option>
+                                <option value="Luxury / Premium">Luxury / Premium</option>
+                                <option value="Friendly / Casual">Friendly / Casual</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cta_type">5.4 Primary Call-To-Action (CTA) <span class="required-indicator">*</span></label>
+                            <input type="text" id="cta_type" name="cta_type" placeholder="e.g. Shop Now / Learn More / Claim 10% Off" required>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="negative_words">5.2 Disallowed terms, claims, or phrases <span class="required-indicator">*</span></label>
+                            <textarea id="negative_words" name="negative_words" placeholder="e.g. Never use words like 'miracle cure', 'weight loss guaranteed', 'instant facelift'. Do not make claims that sound like prescription medicine." required></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="positive_words">5.3 Mandatory terms or catchphrases to include <span class="required-indicator">*</span></label>
+                            <textarea id="positive_words" name="positive_words" placeholder="e.g. Always mention: 'Wild-caught Icelandic Marine peptides', 'Pure Bioavailability', and 'Science-backed wellness'." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="brand_guidelines_url">5.5 Brand Guideline Document Link</label>
+                            <input type="url" id="brand_guidelines_url" name="brand_guidelines_url" placeholder="https://drive.google.com/share-folder">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="copy_length">5.6 Preferred Ad Copy Length <span class="required-indicator">*</span></label>
+                            <select id="copy_length" name="copy_length" required>
+                                <option value="" disabled selected>Select copy length</option>
+                                <option value="Short-form (Punchy headlines, minimal text)">Short-form (Punchy headlines, minimal text)</option>
+                                <option value="Long-form (Storytelling, deep descriptions)">Long-form (Storytelling, deep descriptions)</option>
+                                <option value="Dynamic (Depends on channel e.g., short for TikTok, long for FB)">Dynamic (Depends on channel)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">6. Workflow & Approval Process</h3>
+                    <div class="info-quote">"Knowing who approves what prevents delays and miscommunication."</div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="reviewer_approver">6.1 Primary Ad Approver/Reviewer <span class="required-indicator">*</span></label>
+                            <input type="text" id="reviewer_approver" name="reviewer_approver" placeholder="e.g. CMO (Chief Marketing Officer) / Marketing Director" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publishing_workflow">6.2 Human-in-the-loop Auto-Publishing <span class="required-indicator">*</span></label>
+                            <select id="publishing_workflow" name="publishing_workflow" required>
+                                <option value="" disabled selected>Select publishing workflow</option>
+                                <option value="Human approval required (AI drafts only)">Human approval required (AI drafts only)</option>
+                                <option value="Semi-autonomous (Publish instantly unless flag triggers)">Semi-autonomous (Publish unless flag triggers)</option>
+                                <option value="Fully autonomous (Auto-publishing without human)">Fully autonomous (Auto-publishing without human)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delivery_channel">6.3 Delivery Hub <span class="required-indicator">*</span></label>
+                            <select id="delivery_channel" name="delivery_channel" required>
+                                <option value="" disabled selected>Select preferred delivery channel</option>
+                                <option value="TechAlaya Custom Web Dashboard">TechAlaya Custom Web Dashboard</option>
+                                <option value="Notion Database / Board">Notion Database / Board</option>
+                                <option value="WhatsApp Group Integration">WhatsApp Group Integration</option>
+                                <option value="Slack / Discord Channel Webhook">Slack / Discord Channel Webhook</option>
+                                <option value="Google Sheets Sync">Google Sheets Sync</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="turnaround_time">6.4 Expected Turnaround Time <span class="required-indicator">*</span></label>
+                            <input type="text" id="turnaround_time" name="turnaround_time" placeholder="e.g. Under 1 hour from request to live draft" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="revision_rounds">6.5 Max Revision Rounds Per Ad <span class="required-indicator">*</span></label>
+                            <input type="text" id="revision_rounds" name="revision_rounds" placeholder="e.g. Max 2 iterations" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="main_contact">6.6 Main Point of Contact & Email <span class="required-indicator">*</span></label>
+                            <input type="text" id="main_contact" name="main_contact" placeholder="e.g. Sarah J. (sarah@company.com)" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                   STEP 5: GOALS, LEGAL & BUDGET SPECIFICATIONS (SECTIONS 7, 8 & 9)
+                   ========================================================================== -->
+                <div class="step-panel" data-step="5">
+                    <div class="section-header">
+                        <span class="section-tag">Step 5 of 6</span>
+                        <h2 class="section-title">Goals, KPIs, Legal & Budgetary Scopes</h2>
+                        <p class="section-description">Define analytical and budget baselines to calculate ROI and ensure strict regulatory adherence.</p>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display);">7. Goals & KPIs</h3>
+                    <div class="info-quote">"You can't improve what you don't measure."</div>
+
+                    <div class="form-grid" style="margin-bottom: 2rem;">
+                        <div class="form-group">
+                            <label for="campaign_goal">7.1 Primary Goal of the Ads <span class="required-indicator">*</span></label>
+                            <select id="campaign_goal" name="campaign_goal" required>
+                                <option value="" disabled selected>Select campaign goal</option>
+                                <option value="Direct Purchase Conversions (ROAS focus)">Direct Purchase Conversions (ROAS focus)</option>
+                                <option value="Brand Awareness & Impression Volume">Brand Awareness & Impression Volume</option>
+                                <option value="Lead Generation (Sign-ups/Emails)">Lead Generation (Sign-ups/Emails)</option>
+                                <option value="Social Media DM / Consultation Inquiries">Social Media DM / Consultation Inquiries</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="target_roas">7.5 Target ROAS (Return on Ad Spend)</label>
+                            <input type="text" id="target_roas" name="target_roas" placeholder="e.g. 3.5x">
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="campaign_history">7.2 Previous campaign metrics (CTR, ROAS, CPC) if available</label>
+                            <textarea id="campaign_history" name="campaign_history" placeholder="e.g. Meta Ads average ROAS is 2.2x, CTR: 1.8%, Average Cost Per Acquisition (CPA): $32.00"></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="success_metric">7.3 What does a successful ad look like to this client? <span class="required-indicator">*</span></label>
+                            <textarea id="success_metric" name="success_metric" placeholder="e.g. Creatives that consistently beat our control banner ad, and sustain a high CTR (> 2.5%) for at least two weeks before visual fatigue sets in." required></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="competitor_success">7.4 Well-performing competitor ad references (Optional)</label>
+                            <textarea id="competitor_success" name="competitor_success" placeholder="e.g. Competitor Y runs a lot of green-themed scientific laboratory video breakdowns. We notice those have high interaction counts."></textarea>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">8. Legal & Compliance</h3>
+                    <div class="info-quote">"Supplement advertising has strict rules. Ignoring them = legal risk."</div>
+
+                    <div class="form-grid" style="margin-bottom: 2rem;">
+                        <div class="form-group">
+                            <label for="product_registration">8.1 Official Registration Status <span class="required-indicator">*</span></label>
+                            <input type="text" id="product_registration" name="product_registration" placeholder="e.g. Certified and registered under SFDA & Dubai Municipality" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="legal_responsibility">8.4 Ultimate Content Liability <span class="required-indicator">*</span></label>
+                            <select id="legal_responsibility" name="legal_responsibility" required>
+                                <option value="" disabled selected>Select liability designation</option>
+                                <option value="Client (Direct reviews and assumes all legal ownership)">Client (Direct reviews and assumes ownership)</option>
+                                <option value="Shared Liability (TechAlaya handles pre-checks)">Shared Liability (TechAlaya pre-checks)</option>
+                                <option value="Agency (TechAlaya assumes compliance liability)">Agency (TechAlaya assumes liability)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="legal_claims">8.2 Prohibited Health/Medical Claims <span class="required-indicator">*</span></label>
+                            <textarea id="legal_claims" name="legal_claims" placeholder="e.g. Do not claim the product cures joint diseases or cures acne. Must always mention that individual results may vary." required></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="disclaimers">8.3 Mandatory Disclaimers / Footnotes <span class="required-indicator">*</span></label>
+                            <textarea id="disclaimers" name="disclaimers" placeholder="e.g. 'These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.'" required></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="past_legal_issues">8.5 Past Regulatory issues or ad warnings (Optional)</label>
+                            <textarea id="past_legal_issues" name="past_legal_issues" placeholder="e.g. Received a warning in 2024 for a banner claiming 'reverses joint decay'. Since then, we only use 'supports joint lubrication'."></textarea>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">9. Technical & Budgetary Parameters</h3>
+                    <div class="info-quote">"Knowing the budget shapes what kind of system we build."</div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="monthly_service_budget">9.1 AI Agency Service Monthly Budget <span class="required-indicator">*</span></label>
+                            <select id="monthly_service_budget" name="monthly_service_budget" required>
+                                <option value="" disabled selected>Select service budget tier</option>
+                                <option value="$1,000 - $2,500 / month">$1,000 - $2,500 / month</option>
+                                <option value="$2,500 - $5,000 / month">$2,500 - $5,000 / month</option>
+                                <option value="$5,000 - $10,000 / month">$5,000 - $10,000 / month</option>
+                                <option value="$10,000+ / month">$10,000+ / month (Enterprise customization)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monthly_ad_budget">9.2 Monthly Paid Ad Spend <span class="required-indicator">*</span></label>
+                            <select id="monthly_ad_budget" name="monthly_ad_budget" required>
+                                <option value="" disabled selected>Select ad spend budget</option>
+                                <option value="Under $5,000 / month">Under $5,000 / month</option>
+                                <option value="$5,000 - $15,000 / month">$5,000 - $15,000 / month</option>
+                                <option value="$15,000 - $50,000 / month">$15,000 - $50,000 / month</option>
+                                <option value="$50,000+ / month">$50,000+ / month</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="tech_tools">9.3 Existing Tech Stack / Tools in place <span class="required-indicator">*</span></label>
+                            <textarea id="tech_tools" name="tech_tools" placeholder="e.g. Shopify, Klaviyo email marketing, Meta Ads Manager, Google Analytics 4, Notion, Slack" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="website_url">9.4 Corporate/Landing Page URL <span class="required-indicator">*</span></label>
+                            <input type="url" id="website_url" name="website_url" placeholder="https://www.yourbrand.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="llm_platform_preference">9.6 Prefered Model / Platform Flexibility <span class="required-indicator">*</span></label>
+                            <select id="llm_platform_preference" name="llm_platform_preference" required>
+                                <option value="" disabled selected>Select platform policy</option>
+                                <option value="Fully Flexible (Agent selects best fit)">Fully Flexible (Agent selects best fit)</option>
+                                <option value="OpenAI APIs strictly">OpenAI APIs strictly</option>
+                                <option value="Google Gemini API strictly">Google Gemini API strictly</option>
+                                <option value="Anthropic Claude API strictly">Anthropic Claude API strictly</option>
+                                <option value="Self-hosted Open Source Models (Llama 3)">Self-hosted Open Source Models (Llama 3)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="system_integrations">9.5 Third-party integrations required <span class="required-indicator">*</span></label>
+                            <textarea id="system_integrations" name="system_integrations" placeholder="e.g. Auto-upload assets into Meta Creative Hub, pull real-time inventory from Shopify API to adjust ad copy" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                   STEP 6: SESSION NOTES & FINAL REVIEW PANEL (SECTION 10 & SUBMISSION)
+                   ========================================================================== -->
+                <div class="step-panel" data-step="6">
+                    <div class="section-header">
+                        <span class="section-tag">Step 6 of 6</span>
+                        <h2 class="section-title">Session Observations & Final Review</h2>
+                        <p class="section-description">Confirm additional session notes and inspect all parameters before final Formspree transmission.</p>
+                    </div>
+
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display);">10. Notes & Extra Observations</h3>
+                    
+                    <div class="form-grid" style="margin-bottom: 2.5rem;">
+                        <div class="form-group span-full">
+                            <label for="session_notes">Session Notes</label>
+                            <textarea id="session_notes" name="session_notes" placeholder="Summarize additional comments discussed during requirements scoping..."></textarea>
+                        </div>
+
+                        <div class="form-group span-full">
+                            <label for="client_concerns">Client Concerns / Mitigations</label>
+                            <textarea id="client_concerns" name="client_concerns" placeholder="Detail any risks, customer compliance hesitations, or timeline bottlenecks..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="special_requests">Special Requests</label>
+                            <input type="text" id="special_requests" name="special_requests" placeholder="e.g. custom visual analytics reports">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="action_items">Action Items After This Session</label>
+                            <input type="text" id="action_items" name="action_items" placeholder="e.g. 1. Set up NDA, 2. Provide product vectors">
+                        </div>
+                    </div>
+
+                    <!-- Interactive Accordion Summary Panel -->
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.15rem; font-family: var(--font-display); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">📋 Summary Data Review</h3>
+                    <p class="section-description" style="margin-bottom: 1rem;">Click each category below to review the answers entered in previous steps. Make sure everything is correct before submitting.</p>
+
+                    <div class="review-container">
+                        <!-- Accordion 1: Contact & AI Goal -->
+                        <div class="review-section" id="reviewSec1">
+                            <button type="button" class="review-trigger">
+                                <span>1. Client Info & Core Goal</span>
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="review-content">
+                                <div class="review-grid">
+                                    <div class="review-item">
+                                        <span class="review-label">Full Name</span>
+                                        <span class="review-value" data-source="client_name"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Company Name</span>
+                                        <span class="review-value" data-source="client_company"></span>
+                                    </div>
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Email Address</span>
+                                        <span class="review-value" data-source="client_email"></span>
+                                    </div>
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Primary Agent Goal</span>
+                                        <span class="review-value" data-source="agent_goal"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Environments</span>
+                                        <span class="review-value" data-source="integration_environment[]"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Model Preference</span>
+                                        <span class="review-value" data-source="llm_preference"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion 2: Product & Audience -->
+                        <div class="review-section" id="reviewSec2">
+                            <button type="button" class="review-trigger">
+                                <span>2. Product & Target Audience</span>
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="review-content">
+                                <div class="review-grid">
+                                    <div class="review-item">
+                                        <span class="review-label">Product Name</span>
+                                        <span class="review-value" data-source="product_name"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Product Category</span>
+                                        <span class="review-value" data-source="product_category"></span>
+                                    </div>
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Product Benefits</span>
+                                        <span class="review-value" data-source="product_benefits"></span>
+                                    </div>
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Ideal Customer (ICP)</span>
+                                        <span class="review-value" data-source="audience_ideal"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Target Regions</span>
+                                        <span class="review-value" data-source="audience_regions"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Gender Focus</span>
+                                        <span class="review-value" data-source="audience_gender"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion 3: Platforms & Languages -->
+                        <div class="review-section" id="reviewSec3">
+                            <button type="button" class="review-trigger">
+                                <span>3. Platforms, Formats & Languages</span>
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="review-content">
+                                <div class="review-grid">
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Ad Platforms</span>
+                                        <span class="review-value" data-source="platforms[]"></span>
+                                    </div>
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Ad Formats</span>
+                                        <span class="review-value" data-source="formats[]"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Ad Frequency</span>
+                                        <span class="review-value" data-source="ad_frequency"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Image Gen Policy</span>
+                                        <span class="review-value" data-source="generate_images"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Languages</span>
+                                        <span class="review-value" data-source="languages"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Localization Style</span>
+                                        <span class="review-value" data-source="localization_style"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion 4: Brand & Workflows -->
+                        <div class="review-section" id="reviewSec4">
+                            <button type="button" class="review-trigger">
+                                <span>4. Brand Voice & Workflow Settings</span>
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="review-content">
+                                <div class="review-grid">
+                                    <div class="review-item">
+                                        <span class="review-label">Brand Tone</span>
+                                        <span class="review-value" data-source="brand_tone"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Call-To-Action</span>
+                                        <span class="review-value" data-source="cta_type"></span>
+                                    </div>
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Disallowed Claims</span>
+                                        <span class="review-value" data-source="negative_words"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Primary Approver</span>
+                                        <span class="review-value" data-source="reviewer_approver"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Publishing Workflow</span>
+                                        <span class="review-value" data-source="publishing_workflow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion 5: Legal & Technical Budget -->
+                        <div class="review-section" id="reviewSec5">
+                            <button type="button" class="review-trigger">
+                                <span>5. Compliance & Technical Budget</span>
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            <div class="review-content">
+                                <div class="review-grid">
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Compliance Disclaimers</span>
+                                        <span class="review-value" data-source="disclaimers"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Service Budget</span>
+                                        <span class="review-value" data-source="monthly_service_budget"></span>
+                                    </div>
+                                    <div class="review-item">
+                                        <span class="review-label">Ad Spend Budget</span>
+                                        <span class="review-value" data-source="monthly_ad_budget"></span>
+                                    </div>
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Website URL</span>
+                                        <span class="review-value" data-source="website_url"></span>
+                                    </div>
+                                    <div class="review-item span-full">
+                                        <span class="review-label">Required Integrations</span>
+                                        <span class="review-value" data-source="system_integrations"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==========================================================================
+                   FOOTER ACTIONS FOR NAVIGATING STEPS
+                   ========================================================================== -->
+                <div class="wizard-footer">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" disabled>
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        Back
+                    </button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">
+                        <span class="btn-text">Next Step</span>
+                        <svg class="btn-text" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- ==========================================================================
+           PAGE FOOTER
+           ========================================================================== -->
+        <footer>
+            <div class="footer-text">
+                Powered by <span class="footer-logo">Alayous Technology</span> - AI Solutions | &copy; 2026 TechAlaya. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==========================================================================
+       VANILLA JAVASCRIPT WIZARD CONTROLLER
+       ========================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const form = document.getElementById('discoveryForm');
+            const stepPanels = document.querySelectorAll('.step-panel');
+            const stepIndicators = document.querySelectorAll('.step-item');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const toastBanner = document.getElementById('toastBanner');
+            const loadDraftBtn = document.getElementById('loadDraftBtn');
+            const discardDraftBtn = document.getElementById('discardDraftBtn');
+            const successOverlay = document.getElementById('successOverlay');
+            
+            // Checkbox and details toggles
+            const envOther = document.getElementById('env_other');
+            const envOtherCard = document.getElementById('card_env_other');
+            const envOtherDetailsContainer = document.getElementById('env_other_details_container');
+            const pltOther = document.getElementById('plt_other');
+            const pltOtherCard = document.getElementById('card_plt_other');
+            const pltOtherDetailsContainer = document.getElementById('plt_other_details_container');
+            const fmtOther = document.getElementById('fmt_other');
+            const fmtOtherCard = document.getElementById('card_fmt_other');
+            const fmtOtherDetailsContainer = document.getElementById('fmt_other_details_container');
+
+            // Interactive inputs character counters
+            const agentGoal = document.getElementById('agent_goal');
+            const goalCounter = document.getElementById('goal_counter');
+
+            // State management
+            let currentStep = 1;
+            const totalSteps = 6;
+            const localStorageKey = 'techalaya_onboarding_draft';
+
+            // Initializations
+            initCheckboxes();
+            initAccordion();
+            initCharacterCounters();
+            checkSavedDraft();
+
+            // Progress tracking updater
+            function updateProgress() {
+                const percent = Math.round((currentStep / totalSteps) * 100);
+                progressBar.style.width = `${percent}%`;
+                progressText.innerText = `${percent}%`;
+
+                // Update active/disabled states in sidebar
+                stepIndicators.forEach((indicator, index) => {
+                    const stepNum = index + 1;
+                    indicator.classList.remove('active');
+                    
+                    if (stepNum === currentStep) {
+                        indicator.classList.add('active');
+                        indicator.classList.remove('disabled');
+                    } else if (stepNum < currentStep) {
+                        indicator.classList.add('completed');
+                        indicator.classList.remove('disabled');
+                    } else {
+                        indicator.classList.remove('completed');
+                        indicator.classList.add('disabled');
+                    }
+                });
+
+                // Update panel displays
+                stepPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                    if (parseInt(panel.getAttribute('data-step')) === currentStep) {
+                        panel.classList.add('active');
+                    }
+                });
+
+                // Update navigation buttons
+                if (currentStep === 1) {
+                    prevBtn.disabled = true;
+                } else {
+                    prevBtn.disabled = false;
+                }
+
+                if (currentStep === totalSteps) {
+                    nextBtn.innerHTML = `
+                        <span class="btn-text">Submit Discovery</span>
+                        <svg class="btn-text" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="spinner"></span>
+                    `;
+                    nextBtn.classList.add('btn-submit');
+                    populateReviewSummary();
+                } else {
+                    nextBtn.innerHTML = `
+                        <span class="btn-text">Next Step</span>
+                        <svg class="btn-text" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                        </svg>
+                        <span class="spinner"></span>
+                    `;
+                    nextBtn.classList.remove('btn-submit');
+                }
+            }
+
+            // Move to next step with validation checks
+            function handleNextStep() {
+                if (validateStep(currentStep)) {
+                    saveDraft();
+                    if (currentStep < totalSteps) {
+                        currentStep++;
+                        updateProgress();
+                        // Scroll card to top on step transitions
+                        document.querySelector('.wizard-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        // Submit Form
+                        submitForm();
+                    }
+                }
+            }
+
+            function handlePrevStep() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateProgress();
+                    document.querySelector('.wizard-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            // Real-time input validation for active step
+            function validateStep(step) {
+                const activePanel = document.querySelector(`.step-panel[data-step="${step}"]`);
+                const requiredFields = activePanel.querySelectorAll('[required]');
+                let isValid = true;
+
+                // Validate standard text inputs, selects, textareas
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('invalid-input');
+                        field.addEventListener('input', function clearError() {
+                            field.classList.remove('invalid-input');
+                            field.removeEventListener('input', clearError);
+                        });
+                    } else {
+                        field.classList.remove('invalid-input');
+                    }
+
+                    // Email specific validation
+                    if (field.type === 'email' && field.value.trim()) {
+                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailPattern.test(field.value.trim())) {
+                            isValid = false;
+                            field.classList.add('invalid-input');
+                        }
+                    }
+                });
+
+                // Checkbox group validation checks (specifically Step 3 platforms & formats)
+                if (step === 3) {
+                    const platformsChecked = activePanel.querySelectorAll('.platforms-checkbox:checked');
+                    const formatsChecked = activePanel.querySelectorAll('.formats-checkbox:checked');
+                    
+                    if (platformsChecked.length === 0) {
+                        isValid = false;
+                        // Add error visual styling to the checkbox cards
+                        const cards = activePanel.querySelectorAll('.platforms-checkbox');
+                        cards.forEach(c => c.closest('.checkbox-card').classList.add('invalid-input'));
+                        
+                        // Clear error on click
+                        activePanel.addEventListener('click', function clearPltErr() {
+                            const newChecked = activePanel.querySelectorAll('.platforms-checkbox:checked');
+                            if (newChecked.length > 0) {
+                                cards.forEach(c => c.closest('.checkbox-card').classList.remove('invalid-input'));
+                                activePanel.removeEventListener('click', clearPltErr);
+                            }
+                        });
+                    }
+
+                    if (formatsChecked.length === 0) {
+                        isValid = false;
+                        const cards = activePanel.querySelectorAll('.formats-checkbox');
+                        cards.forEach(c => c.closest('.checkbox-card').classList.add('invalid-input'));
+                        
+                        activePanel.addEventListener('click', function clearFmtErr() {
+                            const newChecked = activePanel.querySelectorAll('.formats-checkbox:checked');
+                            if (newChecked.length > 0) {
+                                cards.forEach(c => c.closest('.checkbox-card').classList.remove('invalid-input'));
+                                activePanel.removeEventListener('click', clearFmtErr);
+                            }
+                        });
+                    }
+                }
+
+                if (!isValid) {
+                    // Trigger haptic-like shake animation on validation error (optional)
+                    const container = document.querySelector('.wizard-card');
+                    container.style.animation = 'none';
+                    setTimeout(() => {
+                        container.style.animation = 'shake 0.3s ease';
+                    }, 10);
+                }
+
+                return isValid;
+            }
+
+            // Keyboard navigation (Enter key helper for simple fields, bypassing textareas)
+            form.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                    handleNextStep();
+                }
+            });
+
+            // Action listeners
+            nextBtn.addEventListener('click', handleNextStep);
+            prevBtn.addEventListener('click', handlePrevStep);
+
+            // Allow navigation to previous steps by clicking sidebar indicators
+            stepIndicators.forEach(indicator => {
+                indicator.addEventListener('click', () => {
+                    const stepNum = parseInt(indicator.getAttribute('data-step'));
+                    // User can jump back to any previous step, or skip forward if they've already passed it
+                    if (!indicator.classList.contains('disabled') && stepNum < currentStep) {
+                        currentStep = stepNum;
+                        updateProgress();
+                    }
+                });
+            });
+
+            // ==========================================================================
+            // DRAFT PERSISTENCE (LOCAL STORAGE)
+            // ==========================================================================
+            function saveDraft() {
+                const formData = new FormData(form);
+                const obj = {};
+                formData.forEach((value, key) => {
+                    // Support array variables like integration_environment[]
+                    if (key.endsWith('[]')) {
+                        if (!obj[key]) {
+                            obj[key] = [];
+                        }
+                        obj[key].push(value);
+                    } else {
+                        obj[key] = value;
+                    }
+                });
+                
+                // Extra checkboxes check (since FormData sometimes drops empty arrays)
+                obj['integration_environment[]'] = getCheckedValues('integration_environment[]');
+                obj['platforms[]'] = getCheckedValues('platforms[]');
+                obj['formats[]'] = getCheckedValues('formats[]');
+
+                localStorage.setItem(localStorageKey, JSON.stringify(obj));
+            }
+
+            function getCheckedValues(name) {
+                const checked = [];
+                document.querySelectorAll(`input[name="${name}"]:checked`).forEach(el => {
+                    checked.push(el.value);
+                });
+                return checked;
+            }
+
+            function checkSavedDraft() {
+                const draft = localStorage.getItem(localStorageKey);
+                if (draft) {
+                    toastBanner.style.display = 'flex';
+                }
+            }
+
+            loadDraftBtn.addEventListener('click', () => {
+                const draft = JSON.parse(localStorage.getItem(localStorageKey));
+                if (draft) {
+                    // Populate inputs
+                    Object.keys(draft).forEach(key => {
+                        const value = draft[key];
+                        
+                        if (Array.isArray(value)) {
+                            // Checkboxes arrays
+                            value.forEach(val => {
+                                const input = form.querySelector(`input[name="${key}"][value="${val}"]`);
+                                if (input) {
+                                    input.checked = true;
+                                    input.closest('.checkbox-card').classList.add('selected');
+                                }
+                            });
+                        } else {
+                            // Normal inputs
+                            const field = form.querySelector(`[name="${key}"]`);
+                            if (field) {
+                                field.value = value;
+                            }
+                        }
+                    });
+
+                    // Trigger other details field layouts if checked
+                    toggleConditionalField(envOther, envOtherDetailsContainer);
+                    toggleConditionalField(pltOther, pltOtherDetailsContainer);
+                    toggleConditionalField(fmtOther, fmtOtherDetailsContainer);
+
+                    // Re-calculate goal characters
+                    triggerCharCounter();
+
+                    toastBanner.style.display = 'none';
+                }
+            });
+
+            discardDraftBtn.addEventListener('click', () => {
+                localStorage.removeItem(localStorageKey);
+                form.reset();
+                // Clear selected checkbox classes
+                document.querySelectorAll('.checkbox-card').forEach(card => card.classList.remove('selected'));
+                toggleConditionalField(envOther, envOtherDetailsContainer);
+                toggleConditionalField(pltOther, pltOtherDetailsContainer);
+                toggleConditionalField(fmtOther, fmtOtherDetailsContainer);
+                triggerCharCounter();
+                toastBanner.style.display = 'none';
+            });
+
+            // Save draft dynamically on input change
+            form.addEventListener('input', saveDraft);
+            form.addEventListener('change', saveDraft);
+
+            // ==========================================================================
+            // DYNAMIC INPUT BEHAVIORS & INTERACTIONS
+            // ==========================================================================
+            function initCheckboxes() {
+                // Style selected state of checkbox cards & toggle optional fields
+                document.querySelectorAll('.checkbox-card').forEach(card => {
+                    const input = card.querySelector('input[type="checkbox"]');
+                    
+                    card.addEventListener('click', (e) => {
+                        // Prevent click triggers twice if target is input
+                        if (e.target !== input) {
+                            input.checked = !input.checked;
+                            // Trigger change event to fire saveDraft
+                            input.dispatchEvent(new Event('change', { bubbles: true }));
+                        }
+                        
+                        if (input.checked) {
+                            card.classList.add('selected');
+                        } else {
+                            card.classList.remove('selected');
+                        }
+
+                        // Specific conditionals
+                        if (input === envOther) toggleConditionalField(envOther, envOtherDetailsContainer);
+                        if (input === pltOther) toggleConditionalField(pltOther, pltOtherDetailsContainer);
+                        if (input === fmtOther) toggleConditionalField(fmtOther, fmtOtherDetailsContainer);
+                    });
+                });
+            }
+
+            function toggleConditionalField(checkbox, container) {
+                if (checkbox && checkbox.checked) {
+                    container.style.display = 'block';
+                    container.querySelector('input').setAttribute('required', 'true');
+                } else if (container) {
+                    container.style.display = 'none';
+                    container.querySelector('input').removeAttribute('required');
+                    container.querySelector('input').value = '';
+                }
+            }
+
+            function initCharacterCounters() {
+                agentGoal.addEventListener('input', triggerCharCounter);
+            }
+
+            function triggerCharCounter() {
+                const len = agentGoal.value.length;
+                goalCounter.innerText = `${len} characters`;
+                if (len > 500) {
+                    goalCounter.style.color = 'var(--success)';
+                } else if (len > 0) {
+                    goalCounter.style.color = 'var(--accent-primary)';
+                } else {
+                    goalCounter.style.color = 'var(--text-muted)';
+                }
+            }
+
+            // ==========================================================================
+            // REVIEW ACCORDION COMPONENT
+            // ==========================================================================
+            function initAccordion() {
+                const accordions = document.querySelectorAll('.review-section');
+                
+                accordions.forEach(acc => {
+                    const trigger = acc.querySelector('.review-trigger');
+                    trigger.addEventListener('click', () => {
+                        const isExpanded = acc.classList.contains('expanded');
+                        
+                        // Close all
+                        accordions.forEach(a => {
+                            a.classList.remove('expanded');
+                            a.classList.remove('active');
+                        });
+
+                        // Toggle active state
+                        if (!isExpanded) {
+                            acc.classList.add('expanded');
+                            acc.classList.add('active');
+                        }
+                    });
+                });
+                
+                // Open first accordion by default
+                if(accordions.length > 0) {
+                    accordions[0].classList.add('expanded');
+                    accordions[0].classList.add('active');
+                }
+            }
+
+            function populateReviewSummary() {
+                const reviewValues = document.querySelectorAll('.review-value');
+                
+                reviewValues.forEach(span => {
+                    const sourceName = span.getAttribute('data-source');
+                    
+                    if (sourceName.endsWith('[]')) {
+                        // Checkbox groups review
+                        const checked = getCheckedValues(sourceName);
+                        if (checked.length > 0) {
+                            span.classList.remove('empty-field');
+                            span.innerText = checked.join(', ');
+                        } else {
+                            span.classList.add('empty-field');
+                            span.innerText = 'No options selected';
+                        }
+                    } else {
+                        // Regular inputs review
+                        const input = form.querySelector(`[name="${sourceName}"]`);
+                        if (input && input.value.trim()) {
+                            span.classList.remove('empty-field');
+                            span.innerText = input.value.trim();
+                        } else {
+                            span.classList.add('empty-field');
+                            span.innerText = 'Not specified';
+                        }
+                    }
+                });
+            }
+
+            // ==========================================================================
+            // SUBMIT LOGIC TO FORMSPREE VIA AJAX OR DIRECT POST
+            // ==========================================================================
+            function submitForm() {
+                const action = form.getAttribute('action');
+                
+                // If endpoint is set, submit using Formspree
+                if (action && action !== 'YOUR_FORMSPREE_ENDPOINT_HERE') {
+                    // Activate loading state
+                    nextBtn.classList.add('loading');
+                    nextBtn.disabled = true;
+                    prevBtn.disabled = true;
+
+                    const formData = new FormData(form);
+                    
+                    fetch(action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            handleSuccessSubmit();
+                        } else {
+                            return response.json().then(data => {
+                                if (Object.hasOwn(data, 'errors')) {
+                                    alert(data["errors"].map(error => error["message"]).join(", "));
+                                } else {
+                                    alert("Submission failed. Please check the Formspree endpoint config.");
+                                }
+                                resetSubmitLoading();
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        alert("Network connection error. Please try again.");
+                        resetSubmitLoading();
+                    });
+                } else {
+                    // Fallback visual simulation for mock environments
+                    nextBtn.classList.add('loading');
+                    nextBtn.disabled = true;
+                    prevBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        handleSuccessSubmit();
+                    }, 1500);
+                }
+            }
+
+            function handleSuccessSubmit() {
+                // Clear local storage draft on successful submit
+                localStorage.removeItem(localStorageKey);
+                
+                // Disable loading state
+                resetSubmitLoading();
+                
+                // Display success overlay
+                successOverlay.style.display = 'flex';
+            }
+
+            function resetSubmitLoading() {
+                nextBtn.classList.remove('loading');
+                nextBtn.disabled = false;
+                prevBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
